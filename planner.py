@@ -2,41 +2,47 @@ from task import Task
 
 class Planner:
     def __init__(self):
-        """
-        TODO: initialize an empty list to hold tasks.
-        Also initialize a counter for generating task IDs (starts at 1).
-        """
-        pass
+        self.tasks = []
+        self.next_id = 1
 
     def add_task(self, title, deadline, priority):
-        """
-        TODO: create a new Task using the next available id,
-        append it to your task list, increment the id counter.
-        Return the new task (useful for confirming to the user what got added).
-        """
-        pass
+        t = Task(self.next_id,  title, deadline, priority)
+        self.tasks.append(t)
+        self.next_id += 1
+
+        return t
+
 
     def remove_task(self, task_id):
-        """
-        TODO: find the task with this id and remove it from the list.
-        What should happen if no task with that id exists? Decide, and
-        handle it — don't let it silently crash.
-        """
-        pass
+        found = False
+        for task in self.tasks:
+            if task.task_id == task_id:
+                self.tasks.remove(task)
+                found = True
+    
+        if not found:
+            return "No task found with the given ID"
+
 
     def mark_task_complete(self, task_id):
-        """
-        TODO: find the task by id, call its mark_complete() method.
-        """
-        pass
+        found = False
+        for task in self.tasks:
+            if task.task_id == task_id:
+                task.mark_complete()
+                found = True
+        if not found:
+            return "No task found with the given ID"
+
 
     def get_all_tasks(self):
-        """
-        TODO: return the full list of tasks.
-        """
-        pass
+        return self.tasks
 
     def get_pending_tasks(self):
+        
+
+
+
+
         """
         TODO: return only tasks where completed is False.
         This is a one-line list comprehension — you've done these before.
