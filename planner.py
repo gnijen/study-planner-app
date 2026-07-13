@@ -1,4 +1,5 @@
 from task import Task
+from datetime import datetime
 
 class Planner:
     def __init__(self):
@@ -38,37 +39,30 @@ class Planner:
         return self.tasks
 
     def get_pending_tasks(self):
-        
+        return [task for task in self.tasks if task.completed == False]
 
 
-
-
-        """
-        TODO: return only tasks where completed is False.
-        This is a one-line list comprehension — you've done these before.
-        """
-        pass
 
     def prioritize(self):
-        """
-        THIS IS THE 'AI-adjacent' LOGIC — your sorting/ranking engine.
-        
-        TODO: return the pending tasks sorted so the most urgent task
-        comes first.
-        
-        Think about what 'urgent' means here. Two candidate approaches:
-        (a) Sort purely by deadline (earliest first).
-        (b) Sort by a combined score of deadline closeness AND priority
-            level, so a HIGH priority task due in 5 days might rank
-            above a LOW priority task due in 2 days.
-        
-        Approach (b) is what makes this feel 'smart' instead of just
-        'sorted.' You decide the formula. A simple starting point:
-        score = days_until_deadline - (priority_weight * some_constant)
-        then sort ascending by score.
-        
-        This is also your first real use of Big O outside LeetCode —
-        what's the time complexity of sorting n tasks? Say it out loud
-        before you move on.
-        """
-        pass
+        priority_weights = {"HIGH": 3, "MEDIUM": 2, "LOW": 1}
+        constant = 3
+
+        def get_score(task):
+            today = datetime.now()
+            deadline_date = datetime.strptime(task.deadline, "%Y-%m-%d")
+            days_until = (deadline_date - today).days
+            weight = priority_weights[task.priority]
+            score = days_until - (weight * constant)
+            return score
+
+        pending = self.get_pending_tasks()
+        return sorted(pending, key=get_score)
+
+
+
+
+
+
+
+
+      
