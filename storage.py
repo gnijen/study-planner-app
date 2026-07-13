@@ -1,20 +1,28 @@
 import json
 import os
+from task import Task
 
 def save_tasks(tasks, filepath="data/tasks.json"):
-    """
-    TODO: convert each task to a dict (using task.to_dict()),
-    build a list of those dicts, and write it to filepath as JSON.
     
-    Think about: does the data/ folder definitely exist? What if
-    this is the first time the program has ever run?
-    """
-    pass
+    task_dicts = [task.to_dict() for task in tasks]
+    
+    os.makedirs(os.path.dirname(filepath), exist_ok=True)
+    
+    with open(filepath, "w") as f:
+        json.dump(task_dicts, f)
+
+
+
+
 
 def load_tasks(filepath="data/tasks.json"):
-    """
-    TODO: if filepath doesn't exist yet, return an empty list — don't crash.
-    If it does exist, read the JSON, and use Task.from_dict() to turn
-    each dict back into a Task object. Return the list of Task objects.
-    """
-    pass
+    if not os.path.exists(filepath):
+        return []
+    
+    with open(filepath, "r") as f:
+        task_dicts = json.load(f)
+    
+    tasks = [Task.from_dict(d) for d in task_dicts]
+    return tasks
+    
+    
