@@ -1,6 +1,6 @@
 import json
 import os
-from task import Task
+from med_refill import Task
 
 def save_tasks(tasks, filepath="data/tasks.json"):
     
@@ -10,9 +10,6 @@ def save_tasks(tasks, filepath="data/tasks.json"):
     
     with open(filepath, "w") as f:
         json.dump(task_dicts, f)
-
-
-
 
 
 def load_tasks(filepath="data/tasks.json"):

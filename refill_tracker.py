@@ -1,7 +1,7 @@
-from task import Task
+from med_refill import Task
 from datetime import datetime
 
-class Planner:
+class RefillTracker:
     def __init__(self):
         self.tasks = []
         self.next_id = 1
