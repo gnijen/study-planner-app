@@ -1,22 +1,24 @@
-# class MedRefill:
-#     def __init__(self, task_id, title, deadline, priority):
-#         self.task_id = task_id
-#         self.title = title
-#         self.deadline = deadline
-#         self.priority = priority
-#         self.completed = False
+from datetime import date, timedelta
+class MedRefill:
+    def __init__(self, refill_id, user_id, medication_name, dosage, instructions, last_refill_date, days_per_supply, refills_remaining ):
+        self.refill_id = refill_id
+        self.user_id = user_id
+        self.medication_name = medication_name
+        self.dosage = dosage
+        self.instructions = instructions
+        self.last_refill_date = last_refill_date
+        self.days_per_supply = days_per_supply
+        self.refills_remaining = refills_remaining
 
-#     def mark_complete(self):
-#         self.completed = True
+    def alert_date(self):
+        alert_time = timedelta(days = 14)
+        supply_length = timedelta(days = self.days_per_supply)
+        alert = (self.last_refill_date + supply_length) - alert_time
+        return alert
+    def alert_message(self):
+        
 
-#     def to_dict(self):
 
-#         return {"task_id": self.task_id,
-#         "title" : self.title,
-#         "deadline" : self.deadline,
-#        "priority":  self.priority,
-#         "completed": self.completed
-#         }
 
 #     @staticmethod
 #     def from_dict(data):
