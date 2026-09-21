@@ -15,8 +15,15 @@ class MedRefill:
         supply_length = timedelta(days = self.days_per_supply)
         alert = (self.last_refill_date + supply_length) - alert_time
         return alert
+    
     def alert_message(self):
-        
+        if self.refills_remaining == 0:
+            return f"Please book your doctor's appointment for prescription/medication refill. Your {self.medication_name} is running low."
+        else:
+            return f"Please contact your pharmacy for your {self.medication_name} refill. Your medication is running low."
+
+
+
 
 
 
