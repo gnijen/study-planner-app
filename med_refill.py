@@ -23,22 +23,20 @@ class MedRefill:
             return f"Please contact your pharmacy for your {self.medication_name} refill. Your medication is running low."
 
 
+    @staticmethod
+    def from_dict(data):
+        refill_id = data.get("refill_id")                                       
+        user_id = data.get("user_id")
+        medication_name = data.get("medication_name")
+        dosage = data.get("dosage")
+        instructions = data.get("instructions")
+        last_refill_date = date.fromisoformat(data.get("last_refill_date"))
+        days_per_supply = data.get("days_per_supply")
+        refills_remaining = data.get("refills_remaining")
 
+        return MedRefill(refill_id, user_id, medication_name, dosage, instructions, last_refill_date, days_per_supply, refills_remaining)
 
-
-
-#     @staticmethod
-#     def from_dict(data):
-#         task_id = data.get("task_id")
-#         title = data.get("title")
-#         deadline = data.get("deadline")
-#         priority = data.get("priority")
         
-
-#         # new_task = Task(task_id, title, deadline, priority)
-#         # new_task.completed = data.get("completed")
-
-#         return new_task
     
 #     def __str__(self):
 #         check = "✓" if self.completed else " "
