@@ -20,25 +20,15 @@ class RefillTracker:
         return [medication for medication in self.medicines if (date.today()) >= medication.alert_date()]
 
 
-    # def remove_task(self, task_id):
-    #     found = False
-    #     for task in self.tasks:
-    #         if task.task_id == task_id:
-    #             self.tasks.remove(task)
-    #             found = True
+    def remove_medication(self, refill_id):
+        found = False
+        for medicine in self.medicines:
+            if medicine.refill_id == refill_id:
+                self.medicines.remove(medicine)
+                found = True
     
-    #     if not found:
-    #         return "No task found with the given ID"
-
-
-    # def mark_task_complete(self, task_id):
-    #     found = False
-    #     for task in self.tasks:
-    #         if task.task_id == task_id:
-    #             task.mark_complete()
-    #             found = True
-    #     if not found:
-    #         return "No task found with the given ID"
+        if not found:
+            return "No medication found with the given ID"
 
 
 
