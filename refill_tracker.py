@@ -11,7 +11,9 @@ class RefillTracker:
         self.medicines.append(m)
         self.next_meds_id += 1
         return m
-        
+
+    def get_all_medicines(self):
+        return self.medicines
 
     # def remove_task(self, task_id):
     #     found = False
@@ -34,8 +36,7 @@ class RefillTracker:
     #         return "No task found with the given ID"
 
 
-    # def get_all_tasks(self):
-    #     return self.tasks
+   
 
     # def get_pending_tasks(self):
     #     return [task for task in self.tasks if task.completed == False]
