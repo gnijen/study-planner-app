@@ -35,6 +35,10 @@ class MedRefill:
         refills_remaining = data.get("refills_remaining")
 
         return MedRefill(refill_id, user_id, medication_name, dosage, instructions, last_refill_date, days_per_supply, refills_remaining)
+
+
+    def __str__(self):
+        return f"User id: {self.user_id} Medication name: {self.medication_name} Dosage: {self.dosage} Alert Date: {self.alert_date()}"
         
 
 
