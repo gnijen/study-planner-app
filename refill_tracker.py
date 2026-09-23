@@ -6,13 +6,12 @@ class RefillTracker:
         self.tasks = []
         self.next_id = 1
 
-    def add_task(self, title, deadline, priority):
-        t = Task(self.next_id,  title, deadline, priority)
-        self.tasks.append(t)
+    def add_medication(self, user_id, medication_name, dosage, instructions, last_refill_date, days_per_supply, refills_remaining):
+        m = MedRefill(self.next_id, user_id, medication_name, dosage, instructions, last_refill_date, days_per_supply, refills_remaining)
+        self.tasks.append(m)
         self.next_id += 1
-
-        return t
-
+        return m
+        
 
     # def remove_task(self, task_id):
     #     found = False
