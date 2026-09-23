@@ -3,13 +3,13 @@ from datetime import datetime
 
 class RefillTracker:
     def __init__(self):
-        self.tasks = []
-        self.next_id = 1
+        self.medicines = []
+        self.next_meds_id = 1
 
     def add_medication(self, user_id, medication_name, dosage, instructions, last_refill_date, days_per_supply, refills_remaining):
-        m = MedRefill(self.next_id, user_id, medication_name, dosage, instructions, last_refill_date, days_per_supply, refills_remaining)
-        self.tasks.append(m)
-        self.next_id += 1
+        m = MedRefill(self.next_meds_id, user_id, medication_name, dosage, instructions, last_refill_date, days_per_supply, refills_remaining)
+        self.medicines.append(m)
+        self.next_meds_id += 1
         return m
         
 
