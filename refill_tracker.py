@@ -1,5 +1,6 @@
 from med_refill import MedRefill
 from datetime import datetime
+from datetime import date
 
 class RefillTracker:
     def __init__(self):
@@ -14,6 +15,15 @@ class RefillTracker:
 
     def get_all_medicines(self):
         return self.medicines
+
+    def meds_needing_attention(self):
+        return [medication for medication in self.medicines if (date.today()) >= medication.alert_date()]
+
+
+
+
+
+    
 
     # def remove_task(self, task_id):
     #     found = False
@@ -38,8 +48,7 @@ class RefillTracker:
 
    
 
-    # def get_pending_tasks(self):
-    #     return [task for task in self.tasks if task.completed == False]
+    
 
 
 
