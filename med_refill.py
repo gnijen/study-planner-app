@@ -35,15 +35,6 @@ class MedRefill:
         refills_remaining = data.get("refills_remaining")
 
         return MedRefill(refill_id, user_id, medication_name, dosage, instructions, last_refill_date, days_per_supply, refills_remaining)
-
-        
-    
-#     def __str__(self):
-#         check = "✓" if self.completed else " "
-#         return f"[{check}] ({self.task_id}) {self.title} - due {self.deadline} - {self.priority}"
-
-
-
         
 
 

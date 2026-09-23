@@ -20,11 +20,6 @@ class RefillTracker:
         return [medication for medication in self.medicines if (date.today()) >= medication.alert_date()]
 
 
-
-
-
-    
-
     # def remove_task(self, task_id):
     #     found = False
     #     for task in self.tasks:
@@ -45,27 +40,6 @@ class RefillTracker:
     #     if not found:
     #         return "No task found with the given ID"
 
-
-   
-
-    
-
-
-
-    # def prioritize(self):
-    #     priority_weights = {"HIGH": 3, "MEDIUM": 2, "LOW": 1}
-    #     constant = 3
-
-    #     def get_score(task):
-    #         today = datetime.now()
-    #         deadline_date = datetime.strptime(task.deadline, "%Y-%m-%d")
-    #         days_until = (deadline_date - today).days
-    #         weight = priority_weights[task.priority]
-    #         score = days_until - (weight * constant)
-    #         return score
-
-    #     pending = self.get_pending_tasks()
-    #     return sorted(pending, key=get_score)
 
 
 
