@@ -1,5 +1,7 @@
 from passlib.context import CryptContext
 from user import User
+import jwt
+from datetime import datetime, timedelta
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
@@ -16,3 +18,13 @@ def login(email, plain_password, stored_user):
             return "Login Failed"
     else:
         return "Login failed"
+
+SECRET_KEY = "this-is-a-placeholder-change-it-later"
+
+def create_token(user_id):
+    payload = {
+        "user_id" : user_id,
+        "exp" : datetime.now() + timedelta(hours=24)
+    }
+    token = jwt.encode(payload, SECRET_KEY, algorithm="HS256")
+    return token
