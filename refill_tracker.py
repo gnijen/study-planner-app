@@ -20,10 +20,10 @@ class RefillTracker:
         return [medication for medication in self.medicines if (date.today()) >= medication.alert_date()]
 
 
-    def remove_medication(self, refill_id):
+    def remove_medication(self, targetted_id):
         found = False
         for medicine in self.medicines:
-            if medicine.refill_id == refill_id:
+            if medicine.refill_id == targetted_id:
                 self.medicines.remove(medicine)
                 found = True
     
