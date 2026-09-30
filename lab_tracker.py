@@ -10,3 +10,17 @@ class LabTracker:
             self.lab_records.append(l)
             self.next_record_id += 1
             return l
+
+    def get_all_records(self):
+            return self.lab_records
+
+    def remove_lab_records(self, removal_id):
+            found = False
+            for record in self.lab_records:
+                if record.lab_id == removal_id:
+                    self.lab_records.remove(record)
+                    found = True
+        
+            if not found:
+                return "No lab records found with the given ID."
+    
