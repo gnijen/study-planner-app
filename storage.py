@@ -19,9 +19,11 @@ def create_tables():
 def save_user(user):
     conn = get_connection()
     cursor = conn.cursor()
-    cursor.execute("INSERT INTO users (user_id, email, hashed_password) VALUES (?, ?, ?)", (user.user_id, user.email, user.hashed_password))
+    cursor.execute("INSERT INTO users (email, hashed_password) VALUES (?, ?)", (user.email, user.hashed_password))
     conn.commit()
+    new_id = cursor.lastrowid
     conn.close()
+    return new_id
 
 def get_user_by_email(email):
     conn = get_connection()

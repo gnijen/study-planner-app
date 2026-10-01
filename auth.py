@@ -2,13 +2,16 @@ from passlib.context import CryptContext
 from user import User
 import jwt
 from datetime import datetime, timedelta
-from storage import get_user_by_email
+from storage import get_user_by_email, save_user
+
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
-def signup(user_id, email, plain_password):
+def signup(email, plain_password):
     hashed_password = pwd_context.hash(plain_password)
-    new_user = User(user_id, email, hashed_password)
+    new_user = User(None, email, hashed_password)
+    new_id = save_user(new_user)
+    new_user.user_id = new_id
     return new_user
 
 def login(email, plain_password):
