@@ -23,4 +23,6 @@ class LabTracker:
         
             if not found:
                 return "No lab records found with the given ID."
-    
+
+    def get_recent_history(self):
+        return sorted(self.lab_records, key=lambda record: record.test_date, reverse=True)
