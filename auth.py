@@ -3,16 +3,21 @@ from user import User
 import jwt
 from datetime import datetime, timedelta
 from storage import get_user_by_email, save_user
+import sqlite3
 
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 def signup(email, plain_password):
+    
     hashed_password = pwd_context.hash(plain_password)
     new_user = User(None, email, hashed_password)
-    new_id = save_user(new_user)
-    new_user.user_id = new_id
-    return new_user
+    try:
+        new_id = save_user(new_user)
+        new_user.user_id = new_id
+        return new_user
+    except sqlite3.IntegrityError:
+        return None
 
 def login(email, plain_password):
     row = get_user_by_email(email)

@@ -9,7 +9,7 @@ def create_tables():
     cursor.execute("""
         CREATE TABLE IF NOT EXISTS users (
             user_id INTEGER PRIMARY KEY,
-            email TEXT,
+            email TEXT UNIQUE,
             hashed_password TEXT
         )
     """)
