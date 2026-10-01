@@ -13,6 +13,19 @@ def create_tables():
             hashed_password TEXT
         )
     """)
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS medications (
+            refill_id INTEGER PRIMARY KEY,
+            user_id INTEGER,
+            medication_name TEXT,
+            dosage TEXT,
+            instructions TEXT,
+            last_refill_date TEXT,
+            days_per_supply INTEGER,
+            refills_remaining INTEGER,
+            FOREIGN KEY (user_id) REFERENCES users(user_id)
+                )
+    """)
     conn.commit()
     conn.close()
 
