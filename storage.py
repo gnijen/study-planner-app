@@ -1,7 +1,9 @@
 import sqlite3
 
 def get_connection():
-    return sqlite3.connect("app.db")
+    conn = sqlite3.connect("app.db")
+    conn.execute("PRAGMA foreign_keys = ON")
+    return conn
 
 def create_tables():
     conn = get_connection()
