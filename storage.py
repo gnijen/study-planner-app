@@ -1,25 +1,32 @@
-import json
-import os
-from med_refill import Task
+import sqlite3
 
-def save_tasks(tasks, filepath="data/tasks.json"):
-    
-    task_dicts = [task.to_dict() for task in tasks]
-    
-    os.makedirs(os.path.dirname(filepath), exist_ok=True)
-    
-    with open(filepath, "w") as f:
-        json.dump(task_dicts, f)
+def get_connection():
+    return sqlite3.connect("app.db")
 
+def create_tables():
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS users (
+            user_id INTEGER PRIMARY KEY,
+            email TEXT,
+            hashed_password TEXT
+        )
+    """)
+    conn.commit()
+    conn.close()
 
-def load_tasks(filepath="data/tasks.json"):
-    if not os.path.exists(filepath):
-        return []
-    
-    with open(filepath, "r") as f:
-        task_dicts = json.load(f)
-    
-    tasks = [Task.from_dict(d) for d in task_dicts]
-    return tasks
-    
-    
+def save_user(user):
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute("INSERT INTO users (user_id, email, hashed_password) VALUES (?, ?, ?)", (user.user_id, user.email, user.hashed_password))
+    conn.commit()
+    conn.close()
+
+def get_user_by_email(email):
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM users WHERE email = ?", (email,))
+    row = cursor.fetchone()
+    conn.close()
+    return row
